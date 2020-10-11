@@ -32,9 +32,6 @@ body {
     -webkit-justify-content: center;
     justify-content: center;
     text-align: center;
-    @media (max-width: 767px) {
-      padding: 20px;
-    }
   }
 
   .menuBox {
@@ -50,14 +47,9 @@ body {
     box-shadow: 0px 0px 11px #ccc;
     background:#fff;
     @media (max-width: 767px) {
-        position:absolute;
-        left:0px;
         width:100%;
         background:#fff;
-        z-index: 100;
-        top:82px;
-        padding-left:0px;
-        padding-bottom:30;
+        padding: 0px 10px;
         text-align:center;
     };
     @media(min-width:768px) and (max-width: 991px) {
@@ -66,11 +58,24 @@ body {
 }
   .titleLogo {
     position: relative;
-    margin-left: 130px;
+    left: 66px;
     font-size: 18px;
     color: #47B8E4;
     font-weight: 600;
     font-family: 'Prompt', sans-serif;
+    @media (max-width: 767px) {
+      font-size: 12px;
+      left: 46px;
+    }
+  }
+
+  .imageSize {
+    width: 120px;
+    height: 32px;
+    @media (max-width: 767px) {
+      width: 50px;
+      height: 12px;
+    }
   }
 
   .containerScreen {

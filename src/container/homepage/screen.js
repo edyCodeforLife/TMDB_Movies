@@ -1,16 +1,15 @@
 import React from "react";
 import "../../components/app.scss"
-import { Pagination, Card, Avatar, Skeleton, Row, Col  } from 'antd';
-import getImagePath from '../../global/constant/config';
+import { Pagination, Card, Skeleton, Row, Col  } from 'antd';
+import { getImagePath } from '../../global/constant/config';
 import { chunk, map } from 'lodash';
 import TopNavBar from '../../components/topNavBar';
 
 function ScreenHomePage(props) {
 	const { Meta } = Card;
-	const { listMovies , onClick, imagePokemon, onChangePage, loading, currentPage, setNavigation } = props;
-	const { items } = listMovies;
-	const newItems = chunk(items,48)[0];
-
+	const { listMovies , onClick, onHandleSearch, onChangePage, loading, currentPage, setNavigation } = props;
+	// const { items } = listMovies;
+	const newItems = chunk(listMovies,48)[0];
 	return (
 		//   <div style={{marginTop: 50, marginBottom: 50}}>
 		// 	<DropdownMenu
@@ -19,7 +18,9 @@ function ScreenHomePage(props) {
 		// 		getAll={getAll}
 		// 	/>
 		<React.Fragment>
-			<TopNavBar />
+			<TopNavBar
+				onHandleSearch={onHandleSearch}
+			/>
 			<Row
 				style={{padding: 50}}
 			>
@@ -58,6 +59,7 @@ function ScreenHomePage(props) {
 					)
 				})}
 			</Row>
+			<Pagination style={{marginBottom: 70}} defaultCurrent={1} simple current={currentPage} onChange={onChangePage} total={100} />
 			</React.Fragment>
 		// </div>
 	);

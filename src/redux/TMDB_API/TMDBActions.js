@@ -1,15 +1,31 @@
-import { GETLISTMOVIES } from './TMDBTypes';
-import { getListMoviesURL } from '../../global/constant/config';
+import { GETLISTMOVIES, SEARCHMOVIES } from './TMDBTypes';
+import { getListMoviesURL, getSearchMovies } from '../../global/constant/config';
 import axios from 'axios';
 
-export const getListMoviesTMDB = () => {
+export const getListMoviesTMDB = (pageId) => {
 	let loading = true;
 	return(dispatch) => {
-		axios.get(getListMoviesURL).then(res => {
+		axios.get(getListMoviesURL(pageId)).then(res => {
 			if (res  && res.data) {
 				loading = false;
 				dispatch({
 					type: GETLISTMOVIES,
+					payload: res.data,
+					loading:loading
+				});
+			}
+		});
+	}
+};
+
+export const searchMovies = (query) => {
+	let loading = true;
+	return(dispatch) => {
+		axios.get(getSearchMovies(query)).then(res => {
+			if (res  && res.data) {
+				loading = false;
+				dispatch({
+					type: SEARCHMOVIES,
 					payload: res.data,
 					loading:loading
 				});
