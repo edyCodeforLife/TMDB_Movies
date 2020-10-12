@@ -71,6 +71,10 @@ function _HomePage(props) {
 		}
 	}
 
+	const setNavigation = (id) => {
+		props.history.push(`/detail?movie_id=${id}`)
+	}
+
 	useEffect(() => {
 		dispatch(getListMoviesTMDB(pageId));
 	  }, [pageId]);
@@ -86,6 +90,7 @@ function _HomePage(props) {
 				listType={listType}
 				onSelectedFilter={onSelectedFilter}
 				onHandleSearch={onHandleSearch}
+				setNavigation={setNavigation}
 			/>
 		</React.Fragment>
 	)

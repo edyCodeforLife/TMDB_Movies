@@ -13,3 +13,23 @@ export const isMobile = () => {
     })(navigator.userAgent || navigator.vendor);
     return check;
 };
+
+export const QrsToObj = (str) => {
+    let search = str.substring(1);
+    return search
+        ? JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g, '":"') + '"}', function(
+              key,
+              value
+          ) {
+              return key === '' ? value : decodeURIComponent(value);
+          })
+        : {};
+};
+
+export function convertMinsToHrsMins(mins) {
+    let h = Math.floor(mins / 60);
+    let m = mins % 60;
+    h = h < 10 ? '0' + h : h;
+    m = m < 10 ? '0' + m : m;
+    return `${h} hours ${m} minutes`;
+}

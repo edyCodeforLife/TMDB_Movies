@@ -12,14 +12,9 @@ function ScreenHomePage(props) {
 	// const { items } = listMovies;
 	const newItems = chunk(listMovies,48)[0];
 	return (
-		//   <div style={{marginTop: 50, marginBottom: 50}}>
-		// 	<DropdownMenu
-		// 		onClick={onClick}
-		// 		listType={listType}
-		// 		getAll={getAll}
-		// 	/>
 		<React.Fragment>
 			<TopNavBar
+				isDetail={false}
 				onClick={onSelectedFilter}
 				listType={listType}
 				getAll={getAll}
@@ -32,7 +27,7 @@ function ScreenHomePage(props) {
 					return(
 						<Col key={`list-of-movies=${idx}`} md={4}>
 							<Card
-								// onClick={() => setNavigation(data.url)}
+								onClick={() => setNavigation(data.id)}
 								loading={loading}
 								size="small"
 								style={{margin: 10}}
@@ -72,8 +67,7 @@ function ScreenHomePage(props) {
 				total={100}
 			/>
 			<BottomBar />
-			</React.Fragment>
-		// </div>
+		</React.Fragment>
 	);
 }
 

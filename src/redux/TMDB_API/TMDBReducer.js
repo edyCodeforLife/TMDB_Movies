@@ -1,8 +1,18 @@
-import { GETLISTMOVIES, SEARCHMOVIES, GETMOVIESTRENDINGWEEKLY, GETNOWPLAYING, GETPOPULARMOVIES, GETTOPRATEDMOVIES, GETUPCOMINGMOVIES } from './TMDBTypes';
+import {
+    GETLISTMOVIES,
+    SEARCHMOVIES,
+    GETMOVIESTRENDINGWEEKLY,
+    GETNOWPLAYING,
+    GETPOPULARMOVIES,
+    GETTOPRATEDMOVIES,
+    GETUPCOMINGMOVIES,
+    GETDETAILMOVIES
+} from './TMDBTypes';
 
     const INITIAL_STATE = {
         listMovies: {},
         loading: true,
+        detailMovie: {}
     };
 
     const reducer = (state = INITIAL_STATE, action) => {
@@ -47,6 +57,12 @@ import { GETLISTMOVIES, SEARCHMOVIES, GETMOVIESTRENDINGWEEKLY, GETNOWPLAYING, GE
                 return {
                     ...state,
                     listMovies: action.payload,
+                    loading: action.loading
+                }
+            case GETDETAILMOVIES:
+                return {
+                    ...state,
+                    detailMovie: action.payload,
                     loading: action.loading
                 }
             default: // need this for default case

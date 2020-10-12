@@ -1,5 +1,23 @@
-import { GETLISTMOVIES, SEARCHMOVIES, GETMOVIESTRENDINGWEEKLY, GETNOWPLAYING, GETPOPULARMOVIES, GETTOPRATEDMOVIES, GETUPCOMINGMOVIES } from './TMDBTypes';
-import { getListMoviesURL, getSearchMovies, getMovieTrendingWeekly, getNowPlaying, getPopularMovies, getTopRatedMovies, getUpcomingMovies } from '../../global/constant/config';
+import {
+	GETLISTMOVIES,
+	SEARCHMOVIES,
+	GETMOVIESTRENDINGWEEKLY,
+	GETNOWPLAYING,
+	GETPOPULARMOVIES,
+	GETTOPRATEDMOVIES,
+	GETUPCOMINGMOVIES,
+	GETDETAILMOVIES
+} from './TMDBTypes';
+import {
+	getListMoviesURL,
+	getSearchMovies,
+	getMovieTrendingWeekly,
+	getNowPlaying,
+	getPopularMovies,
+	getTopRatedMovies,
+	getUpcomingMovies,
+	getDetailMovie
+} from '../../global/constant/config';
 import axios from 'axios';
 
 export const getListMoviesTMDB = (pageId) => {
@@ -107,6 +125,22 @@ export const getMoviesUpcoming = (pageId) => {
 				loading = false;
 				dispatch({
 					type: GETUPCOMINGMOVIES,
+					payload: res.data,
+					loading:loading
+				});
+			}
+		});
+	}
+};
+
+export const getMovieDetail = (movieId) => {
+	let loading = true;
+	return(dispatch) => {
+		axios.get(getDetailMovie(movieId)).then(res => {
+			if (res  && res.data) {
+				loading = false;
+				dispatch({
+					type: GETDETAILMOVIES,
 					payload: res.data,
 					loading:loading
 				});
