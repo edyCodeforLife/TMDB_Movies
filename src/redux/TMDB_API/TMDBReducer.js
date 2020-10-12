@@ -1,4 +1,4 @@
-import { GETLISTMOVIES, SEARCHMOVIES } from './TMDBTypes';
+import { GETLISTMOVIES, SEARCHMOVIES, GETMOVIESTRENDINGWEEKLY, GETNOWPLAYING, GETPOPULARMOVIES, GETTOPRATEDMOVIES, GETUPCOMINGMOVIES } from './TMDBTypes';
 
     const INITIAL_STATE = {
         listMovies: {},
@@ -14,6 +14,36 @@ import { GETLISTMOVIES, SEARCHMOVIES } from './TMDBTypes';
                     loading: action.loading
                 };
             case SEARCHMOVIES:
+                return {
+                    ...state,
+                    listMovies: action.payload,
+                    loading: action.loading
+                }
+            case GETMOVIESTRENDINGWEEKLY:
+                return {
+                    ...state,
+                    listMovies: action.payload,
+                    loading: action.loading
+                }
+            case GETNOWPLAYING:
+                return {
+                    ...state,
+                    listMovies: action.payload,
+                    loading: action.loading
+                }
+            case GETPOPULARMOVIES:
+                return {
+                    ...state,
+                    listMovies: action.payload,
+                    loading: action.loading
+                }
+            case GETTOPRATEDMOVIES:
+                return {
+                    ...state,
+                    listMovies: action.payload,
+                    loading: action.loading
+                }
+            case GETUPCOMINGMOVIES:
                 return {
                     ...state,
                     listMovies: action.payload,

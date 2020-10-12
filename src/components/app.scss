@@ -69,6 +69,12 @@ body {
     }
   }
 
+  .containerFilterAndSearch {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 55%;
+  }
+
   .imageSize {
     width: 120px;
     height: 32px;

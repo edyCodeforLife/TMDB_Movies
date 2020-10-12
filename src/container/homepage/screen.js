@@ -4,10 +4,11 @@ import { Pagination, Card, Skeleton, Row, Col  } from 'antd';
 import { getImagePath } from '../../global/constant/config';
 import { chunk, map } from 'lodash';
 import TopNavBar from '../../components/topNavBar';
+import BottomBar from '../../components/bottomBar';
 
 function ScreenHomePage(props) {
 	const { Meta } = Card;
-	const { listMovies , onClick, onHandleSearch, onChangePage, loading, currentPage, setNavigation } = props;
+	const { listMovies , onSelectedFilter, getAll, listType, onHandleSearch, onChangePage, loading, currentPage, setNavigation } = props;
 	// const { items } = listMovies;
 	const newItems = chunk(listMovies,48)[0];
 	return (
@@ -19,6 +20,9 @@ function ScreenHomePage(props) {
 		// 	/>
 		<React.Fragment>
 			<TopNavBar
+				onClick={onSelectedFilter}
+				listType={listType}
+				getAll={getAll}
 				onHandleSearch={onHandleSearch}
 			/>
 			<Row
@@ -59,7 +63,15 @@ function ScreenHomePage(props) {
 					)
 				})}
 			</Row>
-			<Pagination style={{marginBottom: 70}} defaultCurrent={1} simple current={currentPage} onChange={onChangePage} total={100} />
+			<Pagination
+				style={{marginBottom: 70}}
+				defaultCurrent={1}
+				simple
+				current={currentPage}
+				onChange={onChangePage}
+				total={100}
+			/>
+			<BottomBar />
 			</React.Fragment>
 		// </div>
 	);

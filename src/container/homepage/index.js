@@ -4,8 +4,14 @@ import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import ScreenHomePage from './screen';
 import { debounce } from 'lodash';
 import {
-	getListMoviesTMDB, searchMovies
-  } from "../../redux/TMDB_API/TMDBActions";
+	getListMoviesTMDB,
+	searchMovies,
+	getMoviesTrendingWeekly,
+	getMoviesPlayingNow,
+	getMoviesPopular,
+	getMoviesTopRated,
+	getMoviesUpcoming
+} from "../../redux/TMDB_API/TMDBActions";
 
 function _HomePage(props) {
 	const state = useSelector(state => state.tmdbList, shallowEqual);
@@ -19,6 +25,7 @@ function _HomePage(props) {
 
 	const onChangePage = (page) => {
 		setPageId(page);
+		setActiveSearch(false);
 		setTimeout(() => {
 			window.scrollTo(0,0);
 		}, 200);
@@ -38,6 +45,32 @@ function _HomePage(props) {
 		}
 	}
 
+	const listType = ['Weekly Trending Movies', 'Now Playing', 'Popular', 'Top Rated', 'Upcoming']
+
+	const getAll = () => {
+		setActiveSearch(false);
+		dispatch(getListMoviesTMDB(pageId));
+	}
+
+	const onSelectedFilter = (value) => {
+		setActiveSearch(true);
+		switch(value) {
+			case 'Weekly Trending Movies':
+				return dispatch(getMoviesTrendingWeekly());
+			case 'Now Playing':
+				return dispatch(getMoviesPlayingNow(pageId));
+			case 'Popular':
+				return dispatch(getMoviesPopular(pageId));
+			case 'Top Rated':
+				return dispatch(getMoviesTopRated(pageId));
+			case 'Upcoming':
+				return dispatch(getMoviesUpcoming(pageId));
+			default:
+				setActiveSearch(false);
+				dispatch(getListMoviesTMDB(pageId));
+		}
+	}
+
 	useEffect(() => {
 		dispatch(getListMoviesTMDB(pageId));
 	  }, [pageId]);
@@ -49,6 +82,9 @@ function _HomePage(props) {
 				loading={state.loading}
 				onChangePage={onChangePage}
 				currentPage={pageId}
+				getAll={getAll}
+				listType={listType}
+				onSelectedFilter={onSelectedFilter}
 				onHandleSearch={onHandleSearch}
 			/>
 		</React.Fragment>
