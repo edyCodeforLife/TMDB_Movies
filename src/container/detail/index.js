@@ -9,7 +9,7 @@ import { getMovieDetail, getMovieReview } from "../../redux/TMDB_API/TMDBActions
 function _DetailMovies(props) {
 	const state = useSelector(state => state.tmdbList, shallowEqual);
 	const dispatch = useDispatch();
-	console.log(state.review)
+	
 	useEffect(() => {
 		let qrs = QrsToObj(window.location.search);
 		dispatch(getMovieDetail(qrs.movie_id));

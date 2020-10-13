@@ -6,7 +6,7 @@ import { chunk, map } from 'lodash';
 import TopNavBar from '../../components/topNavBar';
 import BottomBar from '../../components/bottomBar';
 import { LikeFilled } from '@ant-design/icons';
-import { convertMinsToHrsMins, getInitials } from '../../global/function/index';
+import { convertMinsToHrsMins, getInitials, isMobile } from '../../global/function/index';
 
 function ScreenHomePage(props) {
 	const { Meta } = Card;
@@ -21,10 +21,10 @@ function ScreenHomePage(props) {
 				<Row
 					style={{padding: 50, width: '100%', backgroundColor: "#3E2631" }}
 				>
-					<Col md={12} xs={24} style={{textAlign: 'left'}}>
+					<Col md={12} xs={24} style={{textAlign: isMobile() ? 'center' : 'left'}}>
 						<img
-							width={550}
-							height={700}
+							width={isMobile() ? 250 : 550}
+							height={isMobile() ? 400 :700}
 							style={{borderRadius: 20, boxShadow: "4px 6px 18px #ccc" }}
 							src={getImagePath(detailMovie.poster_path)}
 						/>

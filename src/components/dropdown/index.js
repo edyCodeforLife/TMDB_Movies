@@ -2,7 +2,7 @@ import React from "react";
 import "../app.scss";
 import {  Menu, Dropdown, Button } from 'antd';
 import { FilterOutlined } from '@ant-design/icons';
-
+import { isMobile } from '../../global/function'
 
 function DropdownMenu(props) {
 	const { onClick, getAll, listType } = props;
@@ -20,7 +20,7 @@ function DropdownMenu(props) {
 
   return (
     <Dropdown overlay={menu}>
-		<Button style={{width: 300, display: 'flex', justifyContent: 'space-between'}} onClick={e => e.preventDefault()}>
+		<Button style={{width: isMobile()? 150 : 300, display: 'flex', justifyContent: 'space-between'}} onClick={e => e.preventDefault()}>
 			Filter Movies by
 			<FilterOutlined style={{fontSize: 20}} />
 		</Button>
