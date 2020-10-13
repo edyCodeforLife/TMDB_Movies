@@ -1,7 +1,5 @@
 import React from 'react';
 import "../app.scss";
-import { Input } from 'antd';
-import { isMobile } from '../../global/function';
 
 export default function BottomBar(props) {
 	const year = (new Date()).getFullYear();

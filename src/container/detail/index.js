@@ -1,7 +1,6 @@
-import React, { useEffect, useCallback, useState, useRef } from "react";
+import React, { useEffect } from "react";
 import "../../components/app.scss";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
-import { debounce } from 'lodash';
 import ScreenHomePage from './screen';
 import { QrsToObj } from '../../global/function/index';
 import { getMovieDetail, getMovieReview } from "../../redux/TMDB_API/TMDBActions";
@@ -9,7 +8,7 @@ import { getMovieDetail, getMovieReview } from "../../redux/TMDB_API/TMDBActions
 function _DetailMovies(props) {
 	const state = useSelector(state => state.tmdbList, shallowEqual);
 	const dispatch = useDispatch();
-	
+
 	useEffect(() => {
 		let qrs = QrsToObj(window.location.search);
 		dispatch(getMovieDetail(qrs.movie_id));

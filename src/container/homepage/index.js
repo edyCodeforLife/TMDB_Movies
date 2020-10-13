@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "../../components/app.scss";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import ScreenHomePage from './screen';

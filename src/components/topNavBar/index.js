@@ -1,7 +1,7 @@
 import React from 'react';
 import "../app.scss";
 import logoImage from "../../assets/images/image005.png"
-import { Input, Row, Col } from 'antd';
+import { Input } from 'antd';
 import { isMobile } from '../../global/function';
 import DropdownMenu from '../dropdown/index';
 

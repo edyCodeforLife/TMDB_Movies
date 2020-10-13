@@ -1,15 +1,14 @@
 import React from "react";
 import "../../components/app.scss"
-import { Rate, Card, Row, Col, Statistic, Avatar, Descriptions } from 'antd';
+import { Rate, Row, Col, Statistic, Avatar } from 'antd';
 import { getImagePath } from '../../global/constant/config';
-import { chunk, map } from 'lodash';
+import { map } from 'lodash';
 import TopNavBar from '../../components/topNavBar';
 import BottomBar from '../../components/bottomBar';
 import { LikeFilled } from '@ant-design/icons';
 import { convertMinsToHrsMins, getInitials, isMobile } from '../../global/function/index';
 
 function ScreenHomePage(props) {
-	const { Meta } = Card;
 	const { detailMovie, redirectLink, reviewMovie } = props;
 	const releaseYear = new Date(detailMovie.release_date).getFullYear();
 
