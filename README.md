@@ -20,7 +20,7 @@ I use React with [Ant Design of React](http://ant.design).
 6. You can view the review section
 
 # Exception
-* No Post review because no access for database and no POST service API for review in TMDB API.
+* No Post review because no access for TMDB database and no POST service API for save review in TMDB API.
 
 ## How to Run the Web Apps
 WARNING: You must have node js and npm already installed in your computer
