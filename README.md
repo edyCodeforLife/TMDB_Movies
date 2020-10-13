@@ -6,6 +6,9 @@ Hello, My name Edy Susanto i make movies web apps for FinAccel technical test.
 # TMDB API v3
 [Rest Service TMDB](https://developers.themoviedb.org/3/getting-started/introduction).
 
+# Access the Demo
+[TMDB Movies](https://mytmdbmovies.netlify.app/).
+
 # Ant Design
 
 I use React with [Ant Design of React](http://ant.design).
