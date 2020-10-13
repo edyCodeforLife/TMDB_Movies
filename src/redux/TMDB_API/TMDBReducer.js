@@ -6,13 +6,15 @@ import {
     GETPOPULARMOVIES,
     GETTOPRATEDMOVIES,
     GETUPCOMINGMOVIES,
-    GETDETAILMOVIES
+    GETDETAILMOVIES,
+    GETREVIEWMOVIE
 } from './TMDBTypes';
 
     const INITIAL_STATE = {
         listMovies: {},
         loading: true,
-        detailMovie: {}
+        detailMovie: {},
+        review: {}
     };
 
     const reducer = (state = INITIAL_STATE, action) => {
@@ -63,6 +65,12 @@ import {
                 return {
                     ...state,
                     detailMovie: action.payload,
+                    loading: action.loading
+                }
+            case GETREVIEWMOVIE:
+                return {
+                    ...state,
+                    review: action.payload,
                     loading: action.loading
                 }
             default: // need this for default case

@@ -35,3 +35,7 @@ export function getUpcomingMovies(pageId) {
 export function getDetailMovie(movieId) {
 	return `https://api.themoviedb.org/3/movie/${movieId}?api_key=${TMDB_API_KEY}&language=en-US`;
 }
+
+export function getReviewMovie(movieId) {
+	return `https://api.themoviedb.org/3/movie/${movieId}/reviews?api_key=${TMDB_API_KEY}&language=en-US`;
+}

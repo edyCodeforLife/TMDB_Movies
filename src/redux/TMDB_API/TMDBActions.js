@@ -6,7 +6,8 @@ import {
 	GETPOPULARMOVIES,
 	GETTOPRATEDMOVIES,
 	GETUPCOMINGMOVIES,
-	GETDETAILMOVIES
+	GETDETAILMOVIES,
+	GETREVIEWMOVIE
 } from './TMDBTypes';
 import {
 	getListMoviesURL,
@@ -16,7 +17,8 @@ import {
 	getPopularMovies,
 	getTopRatedMovies,
 	getUpcomingMovies,
-	getDetailMovie
+	getDetailMovie,
+	getReviewMovie
 } from '../../global/constant/config';
 import axios from 'axios';
 
@@ -141,6 +143,22 @@ export const getMovieDetail = (movieId) => {
 				loading = false;
 				dispatch({
 					type: GETDETAILMOVIES,
+					payload: res.data,
+					loading:loading
+				});
+			}
+		});
+	}
+};
+
+export const getMovieReview = (movieId) => {
+	let loading = true;
+	return(dispatch) => {
+		axios.get(getReviewMovie(movieId)).then(res => {
+			if (res  && res.data) {
+				loading = false;
+				dispatch({
+					type: GETREVIEWMOVIE,
 					payload: res.data,
 					loading:loading
 				});

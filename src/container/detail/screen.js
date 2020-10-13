@@ -1,16 +1,16 @@
 import React from "react";
 import "../../components/app.scss"
-import { Rate, Card, Row, Col, Statistic } from 'antd';
+import { Rate, Card, Row, Col, Statistic, Avatar, Descriptions } from 'antd';
 import { getImagePath } from '../../global/constant/config';
 import { chunk, map } from 'lodash';
 import TopNavBar from '../../components/topNavBar';
 import BottomBar from '../../components/bottomBar';
 import { LikeFilled } from '@ant-design/icons';
-import { convertMinsToHrsMins } from '../../global/function/index';
+import { convertMinsToHrsMins, getInitials } from '../../global/function/index';
 
 function ScreenHomePage(props) {
 	const { Meta } = Card;
-	const { detailMovie, redirectLink } = props;
+	const { detailMovie, redirectLink, reviewMovie } = props;
 	const releaseYear = new Date(detailMovie.release_date).getFullYear();
 
 	return (
@@ -150,6 +150,74 @@ function ScreenHomePage(props) {
 
 						</Row>
 					</Col>
+
+					<Col md={24} xs={24} style={{textAlign: 'left', marginTop: 40,}}>
+						<h1 style={{color: "wheat"}}>Review Section</h1>
+					</Col>
+
+					<Row
+						style={{
+							width: '100%',
+							padding: 30,
+							textAlign: "left",
+							backgroundColor: "white",
+							borderRadius: 8,
+							border: '4px solid orange',
+							// boxShadow: "3px 4px 10px #ccc",
+							// height: "100vh",
+							// maxHeight: '100vh',
+							// overflowY: 'scroll',
+						}}>
+
+						{reviewMovie && reviewMovie.results && map(reviewMovie.results, o => (
+							<Col md={24} xs={24}
+								style={{
+									margin: "10px 0px",
+									backgroundColor: "white",
+									width: "100%",
+									height: "auto",
+									padding: 20,
+									borderRadius: 15,
+									border: '4px solid #4DBBE6',
+									boxShadow: "3px 4px 10px #ccc"
+								}}>
+								<Avatar
+									style={{
+										backgroundColor: "orange",
+										color: "wheat"
+									}}
+									size={40}>
+									{getInitials(o.author)}
+								</Avatar>
+								<span
+									style={{
+										fontSize: 18,
+										marginLeft: 10,
+										fontWeight: 500,
+										color: "orange"
+									}}
+								>
+									{o.author}
+								</span>
+								<Col md={24} xs={24}
+									style={{
+										display: 'flex',
+										flexWrap: 'wrap',
+										marginLeft: 50,
+										lineHeight: 1.6
+									}}
+								>
+									<p
+										dangerouslySetInnerHTML=
+										{{__html:
+											o.content
+										}}
+								/>
+								</Col>
+							</Col>
+						))}
+
+					</Row>
 				</Row>
 			<BottomBar />
 		</React.Fragment>

@@ -4,15 +4,16 @@ import { useSelector, shallowEqual, useDispatch } from "react-redux";
 import { debounce } from 'lodash';
 import ScreenHomePage from './screen';
 import { QrsToObj } from '../../global/function/index';
-import { getMovieDetail } from "../../redux/TMDB_API/TMDBActions";
+import { getMovieDetail, getMovieReview } from "../../redux/TMDB_API/TMDBActions";
 
 function _DetailMovies(props) {
 	const state = useSelector(state => state.tmdbList, shallowEqual);
 	const dispatch = useDispatch();
-	console.log(state.detailMovie)
+	console.log(state.review)
 	useEffect(() => {
 		let qrs = QrsToObj(window.location.search);
 		dispatch(getMovieDetail(qrs.movie_id));
+		dispatch(getMovieReview(qrs.movie_id));
 	}, []);
 
 	const redirectLink = (url) => {
@@ -26,6 +27,7 @@ function _DetailMovies(props) {
 		<React.Fragment>
 			<ScreenHomePage
 				detailMovie={state.detailMovie}
+				reviewMovie={state.review}
 				redirectLink={redirectLink}
 			/>
 		</React.Fragment>
